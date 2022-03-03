@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+
+    <changeSet id="20220218160952-1" author="jhipster">
+        <createTable tableName="board">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="creation_date" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="topic_id" type="bigint">
+                <constraints unique="true" nullable="false" uniqueConstraintName="ux_board_topic_id" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20220218160952-1-relations" author="jhipster">
+
+    </changeSet>
+
+    <changeSet id="20220218160952-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/board.csv"
+                  separator=";"
+                  tableName="board">
+            <column name="id" type="numeric"/>
+            <column name="title" type="string"/>
+            <column name="description" type="string"/>
+            <column name="creation_date" type="date"/>
+            <column name="topic_id" type="numeric"/>
+        </loadData>
+    </changeSet>
+
+</databaseChangeLog>

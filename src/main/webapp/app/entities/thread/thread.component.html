@@ -1,0 +1,75 @@
+<div>
+    <h2 id="page-heading">
+        <span>Threads</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-thread" [routerLink]="['/thread/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Thread
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="threads?.length === 0">
+        <span>No threads found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="threads && threads.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Title</span></th>
+                    <th scope="col" ><span>Description</span></th>
+                    <th scope="col" ><span>Creation Date</span></th>
+                    <th scope="col" ><span>User</span></th>
+                    <th scope="col" ><span>Board</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let thread of threads ;trackBy: trackId">
+                    <td><a [routerLink]="['/thread', thread.id, 'view']">{{ thread.id }}</a></td>
+                    <td>{{ thread.title }}</td>
+                    <td>{{ thread.description }}</td>
+                    <td>{{ thread.creationDate | date:'mediumDate' }}</td>
+                    <td>
+                        {{ thread.user?.login }}
+                    </td>
+                    <td>
+                        <div *ngIf="thread.board">
+                            <a [routerLink]="['/board', thread.board?.id, 'view']" >{{ thread.board?.title }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/thread', thread.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/thread', thread.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(thread)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

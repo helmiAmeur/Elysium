@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the view for stat.
+    -->
+    <changeSet id="20220227212021-1" author="hbenameur">
+
+        <createView viewName="USER_STAT">
+            SELECT UUID() AS uuid , JHI_USER.LOGIN, count( *) as NUMBER FROM MESSAGE, JHI_USER WHERE JHI_USER.id = MESSAGE.USER_ID  GROUP BY MESSAGE.USER_ID</createView>
+
+    </changeSet>
+
+    <changeSet id="20220227212021-2" author="hbenameur">
+
+        <createView viewName="DATE_STAT">
+            SELECT UUID() AS uuid ,CREATION_DATE, count(*) as NUMBER FROM MESSAGE GROUP BY CREATION_DATE
+        </createView>
+
+    </changeSet>
+</databaseChangeLog>

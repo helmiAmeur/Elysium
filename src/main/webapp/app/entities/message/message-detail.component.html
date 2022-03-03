@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="message">
+            <h2><span>Message</span> {{ message.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{ message.description }}</span>
+                </dd>
+                <dt><span>Creation Date</span></dt>
+                <dd>
+                    <span>{{ message.creationDate }}</span>
+                </dd>
+                <dt><span>Level</span></dt>
+                <dd>
+                    <span>{{ message.level }}</span>
+                </dd>
+                <dt><span>User</span></dt>
+                <dd>
+                    {{ message.user?.login }}
+                </dd>
+                <dt><span>Thread</span></dt>
+                <dd>
+                    <div *ngIf="message.thread">
+                        <a [routerLink]="['/thread', message.thread?.id, 'view']">{{ message.thread?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Message Parent</span></dt>
+                <dd>
+                    <div *ngIf="message.messageParent">
+                        <a [routerLink]="['/message', message.messageParent?.id, 'view']">{{ message.messageParent?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/message', message.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

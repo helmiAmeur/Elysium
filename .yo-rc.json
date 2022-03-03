@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.elysium.org"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "Elysium",
+    "packageName": "com.elysium.org",
+    "packageFolder": "com/elysium/org",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "no",
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZjE0YmFkMjRlOTlmNjMwNDJhZWIxNzlkMWI0ZjliZGMwOTNmNTYyYmQzNmEwM2U3NWNmNDQ4ZTU1NGY5Zjk1NzZkYzcwNmNiYmUxODMwMDI2MzA1MjkxMTQ3NmUyZGYyOTQ5NTJhZDU0NTE5ZjZlNTVmMjY4MjJhMGMzZTZjNmM=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "materia",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1645198343524,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": [],
+    "lastLiquibaseTimestamp": 1645201214000
+  }
+}
