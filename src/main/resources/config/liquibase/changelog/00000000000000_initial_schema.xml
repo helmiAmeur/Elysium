@@ -8,7 +8,7 @@
 
         <property name="autoIncrement" value="true"/>
 
-    <changeSet id="00000000000001" author="jhipster">
+    <changeSet id="00000000000001" author="hbenameur">
         <createTable tableName="jhi_user">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}" >
                 <constraints primaryKey="true" nullable="false"/>
@@ -135,7 +135,7 @@
                                  referencedTableName="jhi_persistent_audit_event"/>
     </changeSet>
 
-    <changeSet author="jhipster" id="00000000000002" context="test">
+    <changeSet author="hbenameur" id="00000000000002" context="test">
         <createTable tableName="jhi_date_time_wrapper">
             <column autoIncrement="${autoIncrement}" name="id" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="jhi_date_time_wrapperPK"/>

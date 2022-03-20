@@ -6,7 +6,7 @@
     <!--
         Added the constraints for entity Thread.
     -->
-    <changeSet id="20220218161531-2" author="jhipster">
+    <changeSet id="20220218161531-2" author="hbenameur">
         
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="thread"

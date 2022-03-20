@@ -4,13 +4,12 @@ import { Subscription } from 'rxjs';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
-import { ChartType } from "angular-google-charts";
-import {StatService} from "app/shared/service/stat.service";
-import { HttpResponse} from "@angular/common/http";
-import {IUserStat} from "app/shared/model/userStat.model";
-import {IdateStat} from "app/shared/model/DateStat.model";
-import {Row} from "angular-google-charts/lib/components/chart-base/chart-base.component";
-
+import { ChartType } from 'angular-google-charts';
+import { StatService } from 'app/shared/service/stat.service';
+import { HttpResponse } from '@angular/common/http';
+import { IUserStat } from 'app/shared/model/userStat.model';
+import { IdateStat } from 'app/shared/model/DateStat.model';
+import { Row } from 'angular-google-charts/lib/components/chart-base/chart-base.component';
 
 @Component({
   selector: 'jhi-home',
@@ -23,14 +22,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   titleUser = 'Message/User';
   titleDate = 'Message/Date';
   type = ChartType.ColumnChart;
-  dataUser : Row[] =[];
-  dataDate : Row[] =[];
   columnNamesUser = ['Message', 'User'];
   columnNamesDate = ['Message', 'Date'];
-  options = { };
+  options = {};
   width = 430;
   height = 400;
-  constructor(private accountService: AccountService, private loginModalService: LoginModalService , private statService: StatService,) {}
+  dataDate: [string, number][] = [];
+  dataUser: [string, number][] = [];
+  constructor(private accountService: AccountService, private loginModalService: LoginModalService, private statService: StatService) {}
 
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
@@ -38,16 +37,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   private loadData(): void {
     this.statService
-        .getUserStat({
-          limit: "2",
-        })
-        .subscribe((res: HttpResponse<IUserStat[]>) => this.onSuccessUser(res.body));
+      .getUserStat({
+        limit: '5',
+      })
+      .subscribe((res: HttpResponse<IUserStat[]>) => this.onSuccessUser(res.body));
 
     this.statService
-        .getDateStat({
-          limit: "2",
-        })
-        .subscribe((res: HttpResponse<IdateStat[]>) => this.onSuccessDate(res.body));
+      .getDateStat({
+        limit: '5',
+      })
+      .subscribe((res: HttpResponse<IdateStat[]>) => this.onSuccessDate(res.body));
   }
   isAuthenticated(): boolean {
     return this.accountService.isAuthenticated();
@@ -64,15 +63,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   private onSuccessUser(userStates: IUserStat[] | null): void {
     userStates?.forEach(entry => {
-   if(entry.login !== undefined && entry.number !== undefined) {
-      this.dataUser.push([entry.login, entry.number]);}
+      if (entry.login !== undefined && entry.number !== undefined && this.dataUser !== undefined) {
+        this.dataUser.push([entry.login, entry.number]);
+      }
     });
   }
 
   private onSuccessDate(dateStates: IdateStat[] | null): void {
     dateStates?.forEach(entry => {
-      if(entry.creationDate !== undefined && entry.number !== undefined) {
-        this.dataDate.push([entry.creationDate.toString(), entry.number]);}
+      if (entry.creationDate !== undefined && entry.number !== undefined && this.dataDate !== undefined) {
+        this.dataDate.push([entry.creationDate.toString(), entry.number]);
+      }
     });
   }
 }

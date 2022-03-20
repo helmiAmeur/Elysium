@@ -9,7 +9,7 @@
         <property name="autoIncrement" value="true"/>
 
 
-    <changeSet id="20220218161531-1" author="jhipster">
+    <changeSet id="20220218161531-1" author="hbenameur">
         <createTable tableName="thread">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -32,11 +32,11 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="20220218161531-1-relations" author="jhipster">
+    <changeSet id="20220218161531-1-relations" author="hbenameur">
 
     </changeSet>
 
-    <changeSet id="20220218161531-1-data" author="jhipster" context="faker">
+    <changeSet id="20220218161531-1-data" author="hbenameur" context="faker">
         <loadData
                   file="config/liquibase/fake-data/thread.csv"
                   separator=";"

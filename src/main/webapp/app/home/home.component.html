@@ -23,7 +23,7 @@
                 <a class="alert-link" routerLink="account/register">Register a new account</a>
             </div>
 
-            <div *ngSwitchCase="true" class="container">
+            <div *ngIf="dataDate.length>0 && dataUser.length>0 && isAuthenticated()"class="container">
                 <div class="row">
                     <div class="col-sm">
                         <google-chart #chart
